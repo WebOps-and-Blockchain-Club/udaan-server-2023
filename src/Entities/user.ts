@@ -7,7 +7,22 @@ export class User {
     id!: string;
 
     @Column()
-    fullName!: string;
+    firstName!: string;
+
+    @Column()
+    middleName!: string;
+
+    @Column()
+    lastName!: string;
+
+    @Column()
+    fatherName!: string;
+
+    @Column()
+    motherName!: string;
+
+    @Column()
+    pan!: string;
 
     @Column()
     gender!: string;
@@ -34,11 +49,17 @@ export class User {
     district!: string;
 
     @Column()
-    pinCode!: number;
+    pincode!: string;
 
     @Column()
-    recentPhoto!: string;
+    photo!: string;
 
     @Column()
-    highestEducation!: string;
+    educationQualification!: string;
+
+    @Column()
+    specialQualification!: string;
+
+    @Column()
+    reasonToJoin!: string;
 }
