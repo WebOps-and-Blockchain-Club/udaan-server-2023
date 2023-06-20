@@ -10,14 +10,14 @@ const port=8000;
 
 
 
-app.get('/',async function(req,res){
+app.post('/',async function(req,res){
 
    
     const userRepo =AppDataSource.getRepository(User);
 
 //find all the records
-const allRecords= await userRepo.find();
-    res.json(allRecords);
+// const allRecords= await userRepo.find();
+//     res.json(allRecords);
 
     //  res.send("ef");
 
@@ -27,14 +27,14 @@ const allRecords= await userRepo.find();
 
 
 
-// //Insert user
-// let user: User=new User();
-// user.emqaail="hello@gmail.com";
-// user.firstName="hello";
-// user.lastName="hi";
+//Insert user
+let user: User=new User();
+user={...req.body}
+// user.lastNam="hi"; 
 
-// const userInserted= await userRepo.save(user);
-// res.json(userInserted);
+const userInserted= await userRepo.save(user);
+res.json(userInserted);
+// app.post;
 
 
 
