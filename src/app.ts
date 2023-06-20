@@ -1,74 +1,38 @@
 import "reflect-metadata"
 import express from 'express';
 import { DataSource } from "typeorm";
-import { User } from "./Entities/user";
-import Tables from "./Entities"
- 
-const app=express();
+import { User } from "./entities/user";
+import Tables from "./entities"
+const app = express();
 app.use(express.json());
-const port=8000;
+const port = 8000;
 
-
-
-app.post('/',async function(req,res){
-
-   
-    const userRepo =AppDataSource.getRepository(User);
-
-//find all the records
-// const allRecords= await userRepo.find();
-//     res.json(allRecords);
-
-    //  res.send("ef");
-
-//delete record
-//     await userRepo.delete(1);
-//     res.send("deleted");
-
-
-
-//Insert user
-let user: User=new User();
-user={...req.body}
-// user.lastNam="hi"; 
-
-const userInserted= await userRepo.save(user);
-res.json(userInserted);
-// app.post;
-
-
-
-//update
-// await userRepo.update(3,{firstName:"helloUpdate",lastName:"hiUpdtae",emqaail:"helloUpdate@gmsil.com"  });
-// res.send("udated");
-
-
-
-//filter
-// const record=await userRepo.findOne({where:{firstName:"Dikshant"}});
-// res.json(record);
-
-// res.json({});
+const AppDataSource = new DataSource({
+    type: "postgres",
+    host: "localhost",
+    port: 5432,
+    username: "postgres",
+    password: "Akshay",
+    database: "udaan",
+    entities: Tables,
+    synchronize: true,
+    logging: true
 });
 
-const AppDataSource= new DataSource({
-    type :"postgres",
-    host:"localhost",
-    port:5432,
-    username:"postgres",
-    password:"A1dikshant",
-    database:"typeorm_db",
-    entities:Tables,
-    synchronize:true,
-    logging:true
-
-
+app.post('/registration', async (req, resp) => {
+    const userRepo = AppDataSource.getRepository(User);
+    let user: User = new User();
+    user = { ...req.body };
+    let userInserted: any = await userRepo.save(user);
+    resp.json({ result: "saved" });
 });
 
-AppDataSource.initialize().then(()=>{
+
+
+AppDataSource.initialize().then(() => {
     console.log("chalaaaaaaa");
-    app.listen(port,()=>{
-        console.log('Timezones by location application is running on port ${port}.');
+    app.listen(port, () => {
+        console.log(`Timezones by location application is running on port ${port}.`);
     })
-}).catch((err)=>console.log("erroooooooooor",err));
+}).catch((err) => console.log("erroooooooooor", err));
 

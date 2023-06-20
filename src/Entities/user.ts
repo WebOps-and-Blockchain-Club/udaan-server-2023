@@ -1,44 +1,44 @@
-import {Entity,PrimaryGeneratedColumn,Column} from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 
-@Entity("User")
-export class User{
+@Entity({ name: "User" })
+export class User {
     @PrimaryGeneratedColumn("uuid")
-    id!:string;
+    id!: string;
 
     @Column()
-    FullName!:string;
+    fullName!: string;
 
     @Column()
-    Gender!:string;
+    gender!: string;
 
     @Column()
-    Email!:string;
+    email!: string;
 
     @Column()
-    Aadhar!:string;
+    aadhar!: string;
 
     @Column()
-    Password!:string;
+    password!: string;
 
     @Column()
-    Address!:string;
+    address!: string;
 
     @Column()
-    DateOfBirth!:string;
+    dateOfBirth!: string;
 
     @Column()
-    State!:string;
+    state!: string;
 
     @Column()
-    District!:string;
+    district!: string;
 
     @Column()
-    PinCode!:string;
+    pinCode!: number;
 
     @Column()
-    RecentPhoto!:string;
+    recentPhoto!: string;
 
     @Column()
-    HighestEducation!:string;
+    highestEducation!: string;
 }
